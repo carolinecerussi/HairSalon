@@ -43,7 +43,7 @@ namespace HairSalon.Controllers
     public ActionResult Edit(int id)
     {
 Client clientFound = _db.Clients.FirstOrDefault(client => client.ClientId == id );
-ViewBag.StylistId = new SelectList (_db.Stylists, "StylistId", "Name", "Date_Hired");
+ViewBag.StylistId = new SelectList (_db.Stylists, "StylistId", "Name");
 return View(clientFound);
     }
 

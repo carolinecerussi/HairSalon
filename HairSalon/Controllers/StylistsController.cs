@@ -42,7 +42,7 @@ namespace HairSalon.SolutionControllers
     }
     public ActionResult Edit(int id)
     {
-      Stylist stylistFound = _dc.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
+      Stylist stylistFound = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
       return View(stylistFound);
     }
 
