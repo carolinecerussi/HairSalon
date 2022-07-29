@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+@using HairSalon.Models;
+
+<h1>Stylists!</h1>
+
+@if (Model.Count == 0)
+{
+  <h3>No Stylists</h3>
+}
+@foreach(Stylist stylist in Model)
+{
+<h3><a href='/stylists/@stylist.Id'>@stylist.stylistName</a></h3>
+}
+<a href='/stylists/new'>New Stylist</a>
+
+
+<a href="/">Back to Claire's Salon Homepage</a> 
