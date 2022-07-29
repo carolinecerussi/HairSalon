@@ -6,14 +6,17 @@
 
 <h1>Stylists!</h1>
 
-@if (Model.Count == 0)
-{
-  <h3>No Clients!</h3>
-  <p>click <a href='/stylists/@Model["stylist"].StylistId/clients/new'>here</a> to add a new Client</p>
-}
-@foreach(Client client in Model)
-{
-<h3><a href='/stylists/Stylist.StylistId/clients'>@client.ClientName</a></h3>
-}
+@if (Model.Count == 0){
 
-<p>@Html.ActionLink("Back to Salon Homepage", "Index", "Home")</p>
+<h2>No Clients!</h2>
+} 
+else {
+}
+  <ul>
+    @foreach(Client client in Model)
+    {
+      <li>@Html.ActionLink($"{client.ClientName} : {client.Stylist.Name}", "Details", new {id = client.ClientId})</li>
+    }
+<p class="link">@Html.ActionLink("Add new client", "Create")</p>
+<hr />
+<p class = "link">@Html.ActionLink("Go to Homepage", "Index", "Home")</p>

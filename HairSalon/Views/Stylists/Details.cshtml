@@ -1,0 +1,27 @@
+
+@{
+  Layout = "_Layout";
+}
+@using HairSalon.Models;
+@model HairSalon.Models.Stylist
+
+<h3>Stylist Info</h3>
+
+<h4>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h4>
+<h4>@Html.DisplayNameFor(model => model.DateHired): @Html.DisplayFor(model => model.DateHired)</h4>
+
+@if (ViewBag.Clients.Count > 0)
+{
+  <hr />
+  <h4>Clients of @Model.Name .</h4>
+  foreach (Client client in ViewBag.Clients)
+  {
+    <p>@Html.ActionLink($"{Client.ClientName}", "Details", "Clients", new { id = client.ClientId })</p>
+  }
+}
+
+<hr />
+<p class="link">@Html.ActionLink($"Edit {@Model.Name}", "Edit", new { id = Model.StylistId })</p>
+<hr />
+<p class="link">@Html.ActionLink("Back to list of stylists", "Index")</p>
+<p class="link">@Html.ActionLink("Go to Home", "Index", "Home")</p>
