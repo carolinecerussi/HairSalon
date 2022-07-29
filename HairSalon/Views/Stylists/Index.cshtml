@@ -6,15 +6,21 @@
 
 <h1>Stylists!</h1>
 
-@if (Model.Count == 0)
+@if (@Model.Count == 0)
 {
   <h3>No Stylists</h3>
 }
+else{
+<ul>
 @foreach(Stylist stylist in Model)
 {
-<h3><a href='/stylists/@Model["stylist"].StylistId'>@stylist.Name</a></h3>
+<li>@Html.ActionLink($"{stylist.Name} : {stylist.DateHired}",  "Details",  new {id = stylist.StylistId })</li>
 }
-<a href='/stylists/new'>New Stylist</a>
+</ul>
+}
+<p class="link">@Html.ActionLink("Add new Stylist", "Create")</p>
+<p class="link">@Html.ActionLink("Go To Homepage", "Index", "Home")</p>
+
 
 
 <a href="/">Back to Claire's Salon Home</a> 

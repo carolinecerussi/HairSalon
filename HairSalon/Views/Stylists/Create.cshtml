@@ -2,6 +2,22 @@
   Layout = "_Layout";
 }
 
-@using HairSalon.Models;
+@using HairSalon.Models.Stylist;
 
-//same as new?//
+<h1>Add a new Stylist</h1>
+@using(Html.BeginForm())
+{
+  <div class="form-group">
+    @Html.LabelFor(model=> model.Name)
+    @Html.TextBoxFor(model=> model.Name, new {required = "required"}) 
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model=> model.DateHired)
+    @Html.TextBoxFor(model=> model.DateHired, new {required= "required"})
+  </div>
+
+  <input type="submit" value = "Add Stylist"/>
+
+}
+
+<p class="link">@Html.ActionLink("Salon Home Page", "Index", "Home")</p>
