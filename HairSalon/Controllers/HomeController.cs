@@ -7,7 +7,7 @@ namespace HairSalon.Controllers
   {
     public ActionResult Index()
     {
-      ViewBag.PageTitle = "HairSalon";
+      ViewBag.PageTitle = "Hair Salon";
       return View();
     }
   }

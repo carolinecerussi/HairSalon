@@ -4,28 +4,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using BestRestaurants.Models;
+using HairSalon.Models;
 
 namespace HairSalon.Controllers
 {
   public class ClientsController : Controller
   {
-    private readonly HairSalonContext _db;
+    private readonly HairSalonContext  _db;
 
-    public HairSalonController(HairSalonContext db)
+    public ClientsController(HairSalonContext db)
     {
       _db = db;
     }
     public ActionResult Index()
     {
       List<Client> model = _db.Clients.Include(client => client.Stylist).ToList();
-      ViewBag.PageTitle = "View All Stylists";
+      ViewBag.PageTitle = "View All Clients";
       return View(model);
     }
     public ActionResult Create()
     {
-      ViewBag.StylistId. new SelectList(_db.Stylists, "StylistId", "Name", "dateHired");
-      //poss add clients to here?^^//
+      ViewBag.StylistId=  new SelectList(_db.Stylists, "StylistId","Name","DateHired" );
       return View();
     }
     [HttpPost]
@@ -35,17 +34,26 @@ namespace HairSalon.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult Edit (int id)
+    public ActionResult Details(int id)
     {
       Client clientFound = _db.Clients.FirstOrDefault(client => client.ClientId == id);
-      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
+      ViewBag.Stylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == clientFound.StylistId);
       return View(clientFound);
     }
-    [HttpPost]
-    public ActionResult Edit(Client client)
+    public ActionResult Edit(int id)
     {
-      _db.Entry(client).State = EntityState.Modified;
-      _db.SaveChanges();
+Client clientFound = _db.Clients.FirstOrDefault(client => client.ClientId == id );
+ViewBag.StylistId = new SelectList (_db.Stylists, "StylistId", "Name", "Date_Hired");
+return View(clientFound);
+    }
+
+[HttpPost]
+public ActionResult Edit(Client client)
+  {
+    _db.Entry(client).State = EntityState.Modified;
+    _db.SaveChanges();
+    return RedirectToAction("Index");
+  }
     }
     }
-    }
+    

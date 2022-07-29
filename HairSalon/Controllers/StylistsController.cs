@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using HairSalon.Models;
 
-namespace HairSalon.Controllers
+namespace HairSalon.SolutionControllers
 {
   public class StylistsController: Controller
   {
     private readonly HairSalonContext _db;
 
-    public StylistsController(HairSalonContext db)
+    public  StylistsController(HairSalonContext db)
     {
       _db = db;
     }
@@ -37,12 +37,22 @@ namespace HairSalon.Controllers
     public ActionResult Details(int id)
     {
       Stylist stylistFound = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
+      ViewBag.Clients = _db.Clients.Where(client => client.StylistId == stylistFound.StylistId).ToList();
       return View(stylistFound);
     }
-    public ActionResult Edit(Stylist stylist)
+    public ActionResult Edit(int id)
     {
+      Stylist stylistFound = _dc.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
+      return View(stylistFound);
+    }
+
+      [HttpPost] 
+      public ActionResult Edit(Stylist stylist)
+      {
       _db.Entry(stylist).State = EntityState.Modified;
       _db.SaveChanges();
+      return RedirectToAction("Index");
+
       //poss also for stylist name?//
     }
     
