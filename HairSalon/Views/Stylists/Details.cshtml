@@ -16,7 +16,7 @@
   <h4>Clients of @Model.Name .</h4>
   foreach (Client client in ViewBag.Clients)
   {
-    <p>@Html.ActionLink($"{Client.ClientName}", "Details", "Clients", new { id = client.ClientId })</p>
+    <p>@Html.ActionLink($"{client.ClientName}", "Details", "Clients", new { id = client.ClientId })</p>
   }
 }
 
