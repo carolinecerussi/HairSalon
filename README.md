@@ -35,7 +35,7 @@ This web application allows Claire, the salon owner, to access a database of her
 
 * Replace [YOUR-USERNAME-HERE] with your MySQL username.
 * Replace [YOUR-PASSWORD-HERE] with your MySQL password.
-
+sdgkj.fxklj;fkxjd
 To Run 
 
 * run the command dotnet build under HairSalon directory in console
